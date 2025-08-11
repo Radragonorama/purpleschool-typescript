@@ -1,9 +1,5 @@
 'use strict';
 
-var makeOrdinal = require('./makeOrdinal');
-var isFinite = require('./isFinite');
-var isSafeNumber = require('./isSafeNumber');
-
 var TEN = 10;
 var ONE_HUNDRED = 100;
 var ONE_THOUSAND = 1000;
@@ -71,10 +67,8 @@ function toWords(number: number | string, asOrdinal?: boolean): string {
   return asOrdinal ? makeOrdinal(words) : words;
 }
 
-function generateWords(number: number): string {
-  var remainder,
-    word,
-    words = arguments[1];
+function generateWords(number: number, words?: string[]): string {
+  var remainder: number, word: string;
 
   // We’re done
   if (number === 0) {
@@ -124,5 +118,3 @@ function generateWords(number: number): string {
   words.push(word);
   return generateWords(remainder, words);
 }
-
-module.exports = toWords;
