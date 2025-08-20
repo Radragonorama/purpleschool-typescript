@@ -5,13 +5,13 @@ export interface ResponseSuccess {
   limit: number;
 }
 
-export interface User {
+interface User {
   id: number;
   firstName: string;
   lastName: string;
   maidenName: string;
   age: number;
-  gender: Gender;
+  gender: Genders;
   email: string;
   phone: string;
   username: string;
@@ -35,26 +35,19 @@ export interface User {
   ssn: string;
   userAgent: string;
   crypto: Crypto;
-  role: Role;
+  role: Roles;
 }
 
-export type Gender = 'male' | 'female';
+enum Genders {
+  Female = 'female',
+  Male = 'male',
+}
 
-export type BloodGroup = 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
+type BloodGroup = 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
 
-export type EyeColor =
-  | 'Amber'
-  | 'Black'
-  | 'Blue'
-  | 'Brown'
-  | 'Gray'
-  | 'Green'
-  | 'Hazel'
-  | 'Red'
-  | 'Violet'
-  | (string & {});
+type EyeColor = 'Amber' | 'Black' | 'Blue' | 'Brown' | 'Gray' | 'Green' | 'Hazel' | 'Red' | 'Violet' | (string & {});
 
-export interface Hair {
+interface Hair {
   color: HairColor;
   type: HairType;
 }
@@ -101,7 +94,7 @@ interface Crypto {
 
 type Coin = 'Bitcoin' | (string & {});
 
-const enum Role {
+enum Roles {
   Admin = 'admin',
   Moderator = 'moderator',
   User = 'user',
