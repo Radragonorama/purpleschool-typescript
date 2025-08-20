@@ -3,7 +3,7 @@ import https from 'https';
 import {ResponseSuccess} from './types';
 
 function fetchUsers() {
-  return new Promise((resolve, reject) => {
+  return new Promise<ResponseSuccess>((resolve, reject) => {
     https
       .get('https://dummyjson.com/users', (response) => {
         let data = '';
@@ -14,7 +14,7 @@ function fetchUsers() {
 
         response.on('end', () => {
           try {
-            resolve(JSON.parse(data) as ResponseSuccess);
+            resolve(JSON.parse(data));
           } catch (error) {
             reject(error);
           }
@@ -25,5 +25,15 @@ function fetchUsers() {
 }
 
 fetchUsers()
-  .then((users) => console.log('Пользователи:', users))
+  .then((response) =>
+    console.log(
+      'Пользователи:',
+      response.users.map((user) => ({
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      })),
+    ),
+  )
   .catch((error) => console.error('Ошибка:', error));
