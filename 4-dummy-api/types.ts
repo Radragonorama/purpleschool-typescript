@@ -101,4 +101,8 @@ interface Crypto {
 
 type Coin = 'Bitcoin' | (string & {});
 
-type Role = 'admin' | 'moderator' | 'user';
+const enum Role {
+  Admin = 'admin',
+  Moderator = 'moderator',
+  User = 'user',
+}
